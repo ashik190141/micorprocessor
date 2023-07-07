@@ -17,7 +17,7 @@ LABEL1:
 MUL BX                 ; Multiply AX by BX (AX = AX * BX)
 INC BX                 ; Increment BX by 1
 CMP BX, NUM            ; Compare BX with NUM
-JA EXIT                ; If BX is greater than NUM, jump to EXIT
+JG EXIT                ; If BX is greater than NUM, jump to EXIT
 JMP LABEL1             ; Otherwise, jump back to LABEL1 for the next iteration
 
 EXIT:
