@@ -27,3 +27,8 @@ MAIN PROC
     
     MOV Q,AL
     MOV R,AH
+    
+    MOV AH,2
+    MOV DL,Q
+    ADD DL,30H
+    INT 21H
