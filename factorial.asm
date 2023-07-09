@@ -1,38 +1,38 @@
-org 100h    ; Set the origin of the code to 100h
+org 100h    
 
-INCLUDE "EMU8086.INC"   ; Include the EMU8086 library
+INCLUDE "EMU8086.INC"
 
-MOV DX, OFFSET MAIN    ; Move the offset address of the MAIN string to DX
-MOV AH, 9              ; Set the print function number to 9 (print string)
-INT 21H                ; Call the interrupt to print the string
+MOV DX, OFFSET MAIN    
+MOV AH, 9              
+INT 21H                
 
-CALL SCAN_NUM          ; Call the SCAN_NUM subroutine to read an integer from the user
-MOV NUM, CX            ; Move the user input (in CX) to the NUM variable
+CALL SCAN_NUM          
+MOV NUM, CX            
 
-MOV BX, 1              ; Initialize BX with 1
-MOV AX, 1              ; Initialize AX with 1
-JMP LABEL1             ; Jump to LABEL1
+MOV BX, 1              
+MOV AX, 1              
+JMP LABEL1             
 
 LABEL1:
-MUL BX                 ; Multiply AX by BX (AX = AX * BX)
-INC BX                 ; Increment BX by 1
-CMP BX, NUM            ; Compare BX with NUM
-JG EXIT                ; If BX is greater than NUM, jump to EXIT
-JMP LABEL1             ; Otherwise, jump back to LABEL1 for the next iteration
+MUL BX                 
+INC BX                 
+CMP BX, NUM            
+JG EXIT                
+JMP LABEL1 
 
 EXIT:
-LEA SI, MSG            ; Load the offset address of the MSG string to SI
-CALL PRINT_STRING      ; Call the PRINT_STRING subroutine to print the string
-CALL PRINT_NUM         ; Call the PRINT_NUM subroutine to print the factorial result
-RET                    ; Return from the main program
+LEA SI, MSG            
+CALL PRINT_STRING      
+CALL PRINT_NUM         
+RET                    
 
-NUM DW ?               ; Define a word variable named NUM to store the user input
+NUM DW ?               
 
-MAIN DB "FACTORIAL CALCULATOR. NUM: $"   ; Define a string named MAIN for printing
+MAIN DB "FACTORIAL CALCULATOR. NUM: $"   
 
-MSG DB 13,10, "THE RESULT IS: ", 0        ; Define a string named MSG for printing the result
+MSG DB 13,10, "THE RESULT IS: ", 0       
 
-DEFINE_PRINT_NUM       ; Macro definition for printing a number
-DEFINE_SCAN_NUM        ; Macro definition for scanning an integer
-DEFINE_PRINT_NUM_UNS   ; Macro definition for printing an unsigned number
-DEFINE_PRINT_STRING    ; Macro definition for printing a string
+DEFINE_PRINT_NUM       
+DEFINE_SCAN_NUM        
+DEFINE_PRINT_NUM_UNS   
+DEFINE_PRINT_STRING    
